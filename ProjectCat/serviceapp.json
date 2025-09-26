@@ -1,0 +1,21 @@
+{
+    "name": "Number Converter",
+    "short_name": "Converter",
+    "start_url": "./number_converter.html",
+    "display": "standalone",
+    "background_color": "#f3f4f6",
+    "theme_color": "#ffffff",
+    "description": "A simple tool to convert between decimal, binary, octal, and hexadecimal number systems.",
+    "icons": [
+        {
+            "src": "https://www.google.com/search?q=https://placehold.co/192x192/007bff/ffffff%3Ftext%3DC",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://www.google.com/search?q=https://placehold.co/512x512/007bff/ffffff%3Ftext%3DC",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
