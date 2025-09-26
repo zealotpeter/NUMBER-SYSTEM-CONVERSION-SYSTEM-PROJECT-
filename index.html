@@ -1,180 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Converter</title>
-    <!-- 1. CORRECTLY LINK TO THE MANIFEST FILE IN THE ROOT -->
-    <link rel="manifest" href="./manifest.json">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Number Converter</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon-192.png" type="image/png" />
+  <meta name="theme-color" content="#4f46e5" />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
-            /* Light background for contrast */
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 2rem;
-        }
-
-        .converter-card {
-            background-color: #ffffff;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            max-width: 420px;
-        }
-
-        input {
-            transition: border-color 0.2s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #4f46e5;
-            /* Tailwind indigo-600 */
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
-        }
-    </style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    header {
+      background: #4f46e5;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    main {
+      margin-top: 30px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #4f46e5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #4338ca;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
 </head>
+<body>
+  <header>
+    <h1>Number Converter</h1>
+  </header>
 
-<body class="p-4 sm:p-6 md:p-8">
+  <main>
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+    <select id="conversionType">
+      <option value="binary">Binary</option>
+      <option value="hexadecimal">Hexadecimal</option>
+      <option
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Number Converter</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon-192.png" type="image/png" />
+  <meta name="theme-color" content="#4f46e5" />
 
-    <div id="app" class="converter-card w-full p-6 rounded-xl space-y-6">
-        <h1 class="text-3xl font-bold text-center text-gray-800">Number Converter</h1>
-        <p class="text-center text-gray-500 mb-6">
-            Convert between Decimal, Binary, Octal, and Hexadecimal
-        </p>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    header {
+      background: #4f46e5;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    main {
+      margin-top: 30px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #4f46e5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #4338ca;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Number Converter</h1>
+  </header>
 
-        <!-- Input Fields -->
-        <div class="space-y-4">
-            <label class="block text-lg font-medium text-gray-700">Decimal</label>
-            <input type="text" id="decimalInput"
-                class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-indigo-600"
-                placeholder="Enter a decimal number" maxlength="10">
-        </div>
-
-        <div class="space-y-4">
-            <label class="block text-lg font-medium text-gray-700">Binary</label>
-            <input type="text" id="binaryInput"
-                class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-indigo-600"
-                placeholder="Enter a binary number" maxlength="32">
-        </div>
-
-        <div class="space-y-4">
-            <label class="block text-lg font-medium text-gray-700">Octal</label>
-            <input type="text" id="octalInput"
-                class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-indigo-600"
-                placeholder="Enter an octal number" maxlength="11">
-        </div>
-
-        <div class="space-y-4">
-            <label class="block text-lg font-medium text-gray-700">Hexadecimal</label>
-            <input type="text" id="hexInput"
-                class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-indigo-600"
-                placeholder="Enter a hexadecimal number" maxlength="8">
-        </div>
-    </div>
-
-    <script>
-        // Get references to all input fields
-        const decimalInput = document.getElementById('decimalInput');
-        const binaryInput = document.getElementById('binaryInput');
-        const octalInput = document.getElementById('octalInput');
-        const hexInput = document.getElementById('hexInput');
-
-        // Function to convert from a base to all others
-        function convert(value, fromBase) {
-            if (!value) {
-                return { decimal: '', binary: '', octal: '', hex: '' };
-            }
-            try {
-                // Parse the input value to a decimal integer
-                const decimal = parseInt(value, fromBase);
-
-                // If parsing fails (e.g., invalid character), return empty strings
-                if (isNaN(decimal)) {
-                    return { decimal: '', binary: '', octal: '', hex: '' };
-                }
-
-                // Convert to other bases
-                return {
-                    decimal: decimal.toString(10),
-                    binary: decimal.toString(2),
-                    octal: decimal.toString(8),
-                    hex: decimal.toString(16).toUpperCase()
-                };
-            } catch (e) {
-                // Catch any unexpected error and clear fields
-                return { decimal: '', binary: '', octal: '', hex: '' };
-            }
-        }
-
-        // Event listener for Decimal Input
-        decimalInput.addEventListener('input', (e) => {
-            const value = e.target.value.replace(/[^0-9]/g, ''); // Only allow digits
-            e.target.value = value;
-            const results = convert(value, 10);
-
-            // Update other fields, but prevent feedback loop by not touching the source field
-            if (e.target !== binaryInput) binaryInput.value = results.binary;
-            if (e.target !== octalInput) octalInput.value = results.octal;
-            if (e.target !== hexInput) hexInput.value = results.hex;
-        });
-
-        // Event listener for Binary Input
-        binaryInput.addEventListener('input', (e) => {
-            const value = e.target.value.replace(/[^01]/g, ''); // Only allow 0 or 1
-            e.target.value = value;
-            const results = convert(value, 2);
-
-            if (e.target !== decimalInput) decimalInput.value = results.decimal;
-            if (e.target !== octalInput) octalInput.value = results.octal;
-            if (e.target !== hexInput) hexInput.value = results.hex;
-        });
-
-        // Event listener for Octal Input
-        octalInput.addEventListener('input', (e) => {
-            const value = e.target.value.replace(/[^0-7]/g, ''); // Only allow 0-7
-            e.target.value = value;
-            const results = convert(value, 8);
-
-            if (e.target !== decimalInput) decimalInput.value = results.decimal;
-            if (e.target !== binaryInput) binaryInput.value = results.binary;
-            if (e.target !== hexInput) hexInput.value = results.hex;
-        });
-
-        // Event listener for Hexadecimal Input
-        hexInput.addEventListener('input', (e) => {
-            const value = e.target.value.replace(/[^0-9a-fA-F]/g, ''); // Only allow 0-9 and a-f
-            e.target.value = value.toUpperCase();
-            const results = convert(value, 16);
-
-            if (e.target !== decimalInput) decimalInput.value = results.decimal;
-            if (e.target !== binaryInput) binaryInput.value = results.binary;
-            if (e.target !== octalInput) octalInput.value = results.octal;
-        });
-
-        // PWA Service Worker Registration
-        //if ('serviceWorker' in navigator) {
-            //window.addEventListener('load', () => {
-              //  navigator.serviceWorker.register('./service-worker.js')
-                //    .then(registration => {
-                  //      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    //})
-                    //.catch(error => {
-                       // console.log('ServiceWorker registration failed: ', error);
-                    //});
-           // });
-        //}
-    </script>
-</body>
-
-</html>
-     
-
-
-
-
+  <main>
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+    <select id="conversionType">
+      <option value="binary">Binary</option>
+      <option value="hexadecimal">Hexadecimal</option>
+      <option
