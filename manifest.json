@@ -1,23 +1,20 @@
 {
-  "name": "Number Converter",
-  "short_name": "NumConvert",
-  "description": "Quickly convert numbers between decimal, binary, octal, and hexadecimal.",
-  "start_url": "/index.html",
+  "name": "Base Number Converter",
+  "short_name": "Converter",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4f46e5",
+  "background_color": "#f7f7f7",
+  "theme_color": "#0077cc",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
